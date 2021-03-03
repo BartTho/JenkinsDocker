@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "anishnath/mkdocs"
+    registry = "BartTho/JenkinsDocker"
     registryCredential = 'docker-creds'
     dockerImage = ''
   }
@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/anishnath/mkdocs.git'
+        git 'https://github.com/BartTho/JenkinsDocker.git'
       }
     }
     stage('Building image') {
@@ -21,7 +21,7 @@ pipeline {
 
     stage('Test Mkdocs' ) {
                 agent {
-                docker { image 'anishnath/mkdocs:$BUILD_NUMBER' }
+                docker { image 'BartTho/JenkinsDocker:$BUILD_NUMBER' }
             }
             steps {
                 sh 'mkdocs --version'
